@@ -53,13 +53,21 @@ def drawliney(selet='3',mode='0'):   #纵向换线
 
 '''数字函数'''
 def drawmath(math='0'):
-    if math ==1:
+    if math ==0:
+        drawlinex(0,1)
+        drawliney(0,0)
+        drawlinex(0,0)
+        drawliney(3,0)
+        drawliney(0,0)
+        drawlinex(0,0)
+        drawliney(3,0)
+    elif math ==1:  #1的显示以下递增
         drawlinex(0,1)
         drawliney(0,0)           
         drawlinex(0,1)
         drawliney(0,1)
         drawlinex(1,1)
-        drawliney(3,0) #1的显示以下递增
+        drawliney(3,0) 
     elif math == 2:
         drawlinex(0,0)
         drawliney(0,0)
@@ -124,7 +132,7 @@ def drawmath(math='0'):
         drawlinex(0,0)
         drawliney(3,0)
     else:
-        print("ERROR!\nDon't input outside from 1 to 9 !")
+        print("ERROR!\nDon't input outside from 0 to 9 !")
         input()
         exit()
 
