@@ -1,28 +1,86 @@
-import turtle as t 
+import turtle as t  #引入库
 import time as m
-
+'''定义函数'''
 def drawline(selet):
-    t.down() if selet == 'true' else t.up()
+    t.down() if selet ==1 else t.up()
     t.fd(50) 
     t.up()
-    t.fd(5)
-    t.down()
+    t.fd(10)
     t.left(90)
-    t.up()
-    t.fd(5)
-    t.down()
-
+    t.fd(10)
+    t.down()#画线函数
 def drawmath(math):
-    drawline(true) if math in [0,2,3,4,5,6,8,9] else drawline(false)
-    drawline(true) if math in [0,1,2,3,4,7,8,9] else drawline(false)
-    drawline(true) if math in [0,2,3,5,6,7,8,9] else drawline(false)
-    drawline(true) if math in [0,4,5,6,8,9] else drawline(false)
-    t.right(90)
-    drawline(true) if math in [0,2,6,8,9] else drawline(false)
-    drawline(true) if math in [0,2,3,5,6,8,9] else drawline(false)
-    drawline(true) if math in [0,1,2,3,4,5,6,7,8,9] else drawline(false)
-
-localTime=m.gmtime()
-localTime_Hour= m.strftime('%H',localTime)
-drawline(localTime)
-
+    drawline(1) if math in [2,3,4,5,6,8,9] else drawline(0)
+    drawline(1) if math in [0,1,2,3,4,7,8,9] else drawline(0)
+    drawline(1) if math in [0,2,3,5,6,7,8,9] else drawline(0)
+    drawline(1) if math in [0,4,5,6,8,9] else drawline(0)
+    t.up()
+    t.right(180)
+    t.fd(10)
+    t.left(90)
+    t.fd(10)
+    t.down()
+    drawline(1) if math in [0,2,6,8,9] else drawline(0)
+    drawline(1) if math in [0,2,3,5,6,8,9] else drawline(0)
+    drawline(1) if math in [0,1,3,4,5,6,7,8,9] else drawline(0)#数字判定函数
+def white(x ,y):
+    t.up()
+    t.home()
+    t.goto(x,y)
+    t.down()
+def point(x ,y):
+    t.goto(-100,0)
+    t.up()
+    t.goto(x,y)
+    t.down()
+    t.dot(10)
+    t.up()
+    t.goto(x,y-60)
+    t.down()
+    t.dot(10)
+    t.up()
+'''主程序'''
+while 1:
+    localTime=m.localtime()
+    localTime_Hour1= int(int(m.strftime('%I',localTime))/10)
+    localTime_Hour2=int(m.strftime('%I',localTime)) % 10
+    localTime_Min1= int(int(m.strftime('%M',localTime))/10)
+    localTime_Min2=int(m.strftime('%M',localTime)) % 10
+    t.setup(500,200)
+    t.pensize(10)
+    t.ht()
+    t.speed(1000)
+    if localTime_Hour1 == 1 and localTime_Min1 >= 1 :
+        t.up()
+        t.goto(-200,0)
+        t.down()
+        drawmath(localTime_Hour1)
+        white(-100,0)
+        drawmath(localTime_Hour2)
+        point(-50,30)
+        white(-20,0)
+        drawmath(localTime_Min1)
+        white(110,0)
+        drawmath(localTime_Min2)
+    elif localTime_Min1 >= 1:
+        t.up()
+        t.goto(-100,0)
+        t.down()
+        drawmath(localTime_Hour2)
+        point(0,30)
+        white(30,0)
+        drawmath(localTime_Min1)
+        white(120,0)
+        drawmath(localTime_Min2)
+    else:
+        t.up()
+        t.goto(-100,0)
+        t.down()
+        drawmath(localTime_Hour2)
+        point(0,30)
+        white(30,0)
+        drawmath(localTime_Min2)
+    Derta_TM=m.sleep(10)
+    Second = eval(m.strftime('%S',localTime))
+    Derta_TM=m.sleep(60-Second)
+    t.reset()
