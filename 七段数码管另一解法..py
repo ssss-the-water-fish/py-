@@ -1,0 +1,87 @@
+from turtle import*  #引入库
+from time import*
+'''定义函数'''
+def drawline(selet):
+    down() if selet ==1 else up()
+    fd(50) 
+    up()
+    fd(10)
+    left(90)
+    fd(10)
+    down()#画线函数
+def drawmath(math):
+    drawline(1) if math in [2,3,4,5,6,8,9] else drawline(0)
+    drawline(1) if math in [0,1,2,3,4,7,8,9] else drawline(0)
+    drawline(1) if math in [0,2,3,5,6,7,8,9] else drawline(0)
+    drawline(1) if math in [0,4,5,6,8,9] else drawline(0)
+    up()
+    right(180)
+    fd(10)
+    left(90)
+    fd(10)
+    down()
+    drawline(1) if math in [0,2,6,8,9] else drawline(0)
+    drawline(1) if math in [0,2,3,5,6,8,9] else drawline(0)
+    drawline(1) if math in [0,1,3,4,5,6,7,8,9] else drawline(0)#数字判定函数
+def white(x ,y):
+    up()
+    home()
+    goto(x,y)
+    down()
+def point(x ,y):
+    goto(-100,0)
+    up()
+    goto(x,y)
+    down()
+    dot(10)
+    up()
+    goto(x,y-60)
+    down()
+    dot(10)
+    up()
+'''主程序'''
+while 1:
+    localTime_Hour1= int(int(strftime('%I'))/10)
+    localTime_Hour2=int(strftime('%I')) % 10
+    localTime_Min1= int(int(strftime('%M'))/10)
+    localTime_Min2=int(strftime('%M')) % 10
+    screensize(500,200,'black')
+    setup(500,200)
+    color('pink')
+    pensize(10)
+    ht()
+    speed(100)
+    if localTime_Hour1 == 1 and localTime_Min1 >= 1 :
+        up()
+        goto(-200,0)
+        down()
+        drawmath(localTime_Hour1)
+        white(-100,0)
+        drawmath(localTime_Hour2)
+        point(-60,30)
+        white(-20,0)
+        drawmath(localTime_Min1)
+        white(110,0)
+        drawmath(localTime_Min2)
+    elif localTime_Min1 >= 1:
+        up()
+        goto(-100,0)
+        down()
+        drawmath(localTime_Hour2)
+        point(-10,30)
+        white(30,0)
+        drawmath(localTime_Min1)
+        white(120,0)
+        drawmath(localTime_Min2)
+    else:
+        up()
+        goto(-100,0)
+        down()
+        drawmath(localTime_Hour2)
+        point(-10,30)
+        white(30,0)
+        drawmath(localTime_Min2)
+    Derta_TM=sleep(10)
+    Second = eval(strftime('%S'))
+    Derta_TM=sleep(60-Second)
+    reset()
